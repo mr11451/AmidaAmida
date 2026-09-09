@@ -1,0 +1,57 @@
+﻿<Window x:Class="AmidaAmida.MainWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d" Height="800" Width="800" WindowStyle="ThreeDBorderWindow" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
+    <Grid Background="#FFEDFBFF"
+         PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown"
+         PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonUp"
+         MouseMove="Grid_MouseMove">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="AmidaStartGrid" Grid.Row="0" HorizontalAlignment="Left"
+                PreviewMouseLeftButtonDown="AmidaView_PreviewMouseLeftButtonDown"
+                PreviewMouseLeftButtonUp="AmidaView_PreviewMouseLeftButtonUp">
+            <Canvas x:Name="AmidaStartCanvas" HorizontalAlignment="Left"/>
+            <Canvas x:Name="AmidaStickLabel" Background="Transparent" HorizontalAlignment="Left"/>
+        </Grid>
+        <ScrollViewer x:Name="AmidaView" Grid.Row="1" ScrollChanged="AmidaView_ScrollChanged">
+            <Grid x:Name="AmidaBodyGrid" Background="#FFBFBFBF"
+                PreviewMouseLeftButtonDown="AmidaView_PreviewMouseLeftButtonDown"
+                PreviewMouseLeftButtonUp="AmidaView_PreviewMouseLeftButtonUp"
+                MouseMove="AmidaView_MouseMove">
+                <Canvas x:Name="AmidaCanvasBase" Loaded="AmidaCanvasBase_Loaded"/>
+                <Canvas x:Name="AmidaCanvas" Background="Transparent"/>
+                <Canvas x:Name="AmidaActionCanvas" Background="Transparent"/>
+            </Grid>
+        </ScrollViewer>
+        <TextBox x:Name="AxisCountTextBox" Grid.Row="1" Grid.Column="1" Margin="5,10,1,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" IsTabStop="False" IsReadOnly="True"/>
+        <Button x:Name="AxisCountUpButton" Grid.Row="1" Grid.Column="2" Content="▲" Margin="0,10,5,0" VerticalAlignment="Top" Click="AxisCountUpButton_Click"/>
+        <Button x:Name="AxisCountDownButton" Grid.Row="1" Grid.Column="2" Content="▼" Margin="0,30,5,0" VerticalAlignment="Top" Click="AxisCountDownButton_Click"/>
+        <Button x:Name="AxisCreateButton" Grid.Row="1" Grid.Column="1" Margin="5,65,5,0" VerticalAlignment="Top" Height="36" Grid.ColumnSpan="2" Click="AxisCreateButton_Click" Content="CREATE"/>
+        <Button x:Name="AxisUndoButton" Grid.Row="1" Grid.Column="1" Margin="5,115,5,0" VerticalAlignment="Top" Height="36" Grid.ColumnSpan="2" Click="AxisUndoButton_Click" Content="UNDO"/>
+        <Button x:Name="AxisFixButton" Grid.Row="1" Grid.Column="1" Margin="5,165,5,0" VerticalAlignment="Top" Height="36" Grid.ColumnSpan="2" Click="AxisFixButton_Click" Content="FIX"/>
+        <Button x:Name="AxisRunButton" Grid.Row="1" Grid.Column="1" Margin="5,215,5,0" VerticalAlignment="Top" Height="36" Grid.ColumnSpan="2" Click="AxisRunButton_Click" Content="RUN"/>
+        <Button x:Name="AxisResetButton" Grid.Row="1" Grid.Column="1" Margin="5,265,5,0" VerticalAlignment="Top" Height="36" Grid.ColumnSpan="2" Click="AxisResetButton_Click" Content="RESET"/>
+        <Canvas x:Name="AmidaGoalCanvas"  Grid.Row="2" HorizontalAlignment="Left"/>
+        <Canvas x:Name="AmidaResultLabel" Grid.Row="2" Background="Transparent" HorizontalAlignment="Left"/>
+        <Canvas x:Name="GoalMaskImage" Grid.Row="2" Background="Aqua" HorizontalAlignment="Left"/>
+        <Canvas x:Name="AnimationCanvas" Grid.RowSpan="3" Background="Transparent" IsHitTestVisible="False" HorizontalAlignment="Left"/>
+        <RadioButton x:Name="CheckVerySlow" Grid.Column="1" Content="Very Slow" HorizontalAlignment="Left" Margin="5,320,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="89" IsChecked="True" Tag="0" Checked="RadioButton_Checked"/>
+        <RadioButton x:Name="CheckSlow" Grid.Column="1" Content="Slow" HorizontalAlignment="Left" Margin="5,350,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="89" Tag="1" Checked="RadioButton_Checked"/>
+        <RadioButton x:Name="CheckFast" Grid.Column="1" Content="Fast" HorizontalAlignment="Left" Margin="5,380,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="89" Tag="2" Checked="RadioButton_Checked"/>
+        <RadioButton x:Name="CheckVeryFast" Grid.Column="1" Content="Very Fast" HorizontalAlignment="Left" Margin="5,410,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="89" Tag="3" Checked="RadioButton_Checked"/>
+        <RadioButton x:Name="CheckNonStop" Grid.Column="1" Content="Non Stop" HorizontalAlignment="Left" Margin="5,440,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="89" Tag="4" Checked="RadioButton_Checked"/>
+        <Label x:Name="ResultMessage" Content="That's too bad." FontSize="72"  IsHitTestVisible="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <Button x:Name="CustomizeButton" Content="Customize" Margin="5,5,5,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CustomizeButton_Click" Grid.Column="1" Height="35"/>
+    </Grid>
+</Window>
